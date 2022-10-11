@@ -51,6 +51,12 @@ if you wanna compile binaries it by yourself, I left some scripts in case you wa
 - [Installing libuv](./scripts/libuv-env-script-x86.sh)
 - [Installing v8](./scripts/v8-env-script-x86.sh)
 
+## ItaloCobains implementations
+
+Soon I will document my implementations here
+
+
 ## Author
 
 - [ErickWendel](https://github.com/erickwendel)
+- [ItaloCobains](https://github.com/ItaloCobains)
