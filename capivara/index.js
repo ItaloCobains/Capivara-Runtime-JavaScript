@@ -1,7 +1,7 @@
-print(`Hello World`)
-
+print("aaaaaaaaaaaa")
+ 
 let interval = 0;
 let sleep = 200;
-// TimeOut(sleep, interval, () => {
-//     print('1 -' + new Date().toISOString())
-// })
+timeout(sleep, interval, () => {
+    print('1 ' + new Date().toISOString())
+})

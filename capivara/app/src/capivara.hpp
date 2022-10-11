@@ -2,6 +2,7 @@
 #include <uv.h>
 #include "v8.h"
 
+#include "./timer.hpp"
 #include "./fs.hpp"
 #include "./util.hpp"
 
@@ -106,6 +107,12 @@ public:
 
         // Bind the global 'print' function to the C++ Print callback.
         global->Set(isolate, "print", v8::FunctionTemplate::New(isolate, Print));
+
+        Timer timer;
+
+        timer.Initialize(DEFAULT_LOOP);
+
+        global->Set(isolate, "timeout", v8::FunctionTemplate::New(isolate, timer.Timeout));
 
         // Create a new context.
         this->context = v8::Context::New(this->isolate, NULL, global);
