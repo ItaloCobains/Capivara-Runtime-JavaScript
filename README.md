@@ -53,7 +53,7 @@ if you wanna compile binaries it by yourself, I left some scripts in case you wa
 
 ## ItaloCobains implementations
 
-Soon I will document my implementations here
+I fix bugs in the implementation of v8 srt() function, to solve the previous error it was necessary to make a new lib inclusion but I received a dependency conflict, so I fixed this conflict.
 
 
 ## Author
