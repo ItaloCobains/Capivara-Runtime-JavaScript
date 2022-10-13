@@ -1,5 +1,6 @@
 #include <v8.h>
 #include <uv.h>
+#include "./util.hpp"
 
 
 struct timer 
@@ -39,7 +40,7 @@ class Timer
 
             timer *timerWrap = new timer();
             timerWrap->callback.Reset(isolate, callback.As<v8::Function>()); 
-            timerWrap->uvTimer.data = (void *)timerWrap;        
+            timerWrap->uvTimer.data = (void *)timerWrap;    
             timerWrap->isolate = isolate;
 
             uv_timer_init(loop, &timerWrap->uvTimer);
@@ -47,9 +48,9 @@ class Timer
 
         }
         
-        static void onTimerCallback(uv_timer_t *handler)
+        static void onTimerCallback(uv_timer_t *handle)
         {
-            timer *timerWrap = (timer *)handler->data;
+            timer *timerWrap = (timer *)handle->data;
             v8::Isolate *isolate = timerWrap->isolate;
             v8::Local<v8::Context> context = isolate->GetCurrentContext();
             if(isolate->IsDead()) {
@@ -61,7 +62,6 @@ class Timer
                 isolate,
                 timerWrap->callback
             );
-
             v8::Local<v8::Value> result;
             v8::Handle<v8::Value> resultr [] = {
                 v8::Undefined(isolate),
@@ -72,13 +72,14 @@ class Timer
                 context,
                 v8::Undefined(isolate),
                 2,
-                resultr
-            ).ToLocal(&result)) {
-                // Ok, this callback succeeded;
-            } 
+                resultr).ToLocal(&result)
+            ) 
+            {
+                // OK, the callback succeeded
+            }
             else 
             {
                 // some exception happened
-            }        
+            }
         }
 };  

@@ -4,7 +4,7 @@
 
 #include "./timer.hpp"
 #include "./fs.hpp"
-#include "./util.hpp"
+// #include "./util.hpp"
 
 uv_loop_t *DEFAULT_LOOP = uv_default_loop();
 
