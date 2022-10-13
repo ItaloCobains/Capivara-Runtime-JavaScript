@@ -3,6 +3,7 @@
 #include "v8.h"
 
 #include "./timer.hpp"
+#include "./thread.hpp"
 #include "./fs.hpp"
 // #include "./util.hpp"
 
@@ -113,6 +114,7 @@ public:
         timer.Initialize(DEFAULT_LOOP);
 
         global->Set(isolate, "timeout", v8::FunctionTemplate::New(isolate, timer.Timeout));
+        global->Set(isolate, "thread", v8::FunctionTemplate::New(isolate, MyThread::Thread));
 
         // Create a new context.
         this->context = v8::Context::New(this->isolate, NULL, global);
